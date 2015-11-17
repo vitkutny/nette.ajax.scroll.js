@@ -1,8 +1,8 @@
 {
 	"name": "nette.ajax.scroll.js",
-	"version": "1.0.0",
 	"main": "nette.ajax.scroll.js",
 	"dependencies": {
+		"jquery": "~2.0",
 		"nette.ajax.js": "~2.0"
 	}
 }
