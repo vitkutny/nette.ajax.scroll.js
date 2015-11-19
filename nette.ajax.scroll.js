@@ -1,21 +1,18 @@
 (function (window, $) {
 	$.nette.ext('scroll', {
 		success: function () {
-			var hash = window.location.hash;
-			if (hash) {
-				var offset = $(hash).offset();
-				if (offset) {
-					var that = this;
-					this.element.on(this.stopEvents, function () {
-						that.element.stop();
-					});
-					this.element.stop().animate({
-						scrollTop: offset.top,
-						scrollLeft: offset.left
-					}, this.speed, function () {
-						that.element.off(that.stopEvents);
-					});
-				}
+			var offset;
+			if (offset = $(window.location.hash).offset()) {
+				var that = this;
+				this.element.on(this.stopEvents, function () {
+					that.element.stop();
+				});
+				this.element.stop().animate({
+					scrollTop: offset.top,
+					scrollLeft: offset.left
+				}, this.speed, function () {
+					that.element.off(that.stopEvents);
+				});
 			}
 		}
 	}, {
