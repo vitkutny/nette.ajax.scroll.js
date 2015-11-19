@@ -1,8 +1,8 @@
-(function (window, $) {
+(function ($, location, undefined) {
 	$.nette.ext('scroll', {
 		success: function () {
 			var offset;
-			if (offset = $(window.location.hash).offset()) {
+			if (offset = $(location.hash).offset()) {
 				var that = this;
 				this.element.on(this.stopEvents, function () {
 					that.element.stop();
@@ -16,8 +16,8 @@
 			}
 		}
 	}, {
-		speed: 'normal',
+		speed: undefined,
 		element: $('html, body'),
 		stopEvents: 'scroll.stop mousedown.stop wheel.stop DOMMouseScroll.stop mousewheel.stop keyup.stop touchmove.stop',
 	});
-})(window, window.jQuery);
+})(window.jQuery, window.location, window.undefined);
