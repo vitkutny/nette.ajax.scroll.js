@@ -1,16 +1,17 @@
 (function ($, document, location, undefined) {
 	$.nette.ext('scroll', {
 		success: function () {
-			var position;
 			var container = $(this.container).last();
-			if (position = container.find(location.hash).position()) {
+			var element = container.find(location.hash).get(0);
+			if (element) {
 				container.on(this.stopEvents, function () {
 					container.stop();
 				});
+				var clientRect = element.getBoundingClientRect();
 				var that = this;
 				container.stop().animate({
-					scrollTop: position.top,
-					scrollLeft: position.left
+					scrollTop: container.scrollTop() + clientRect.top,
+					scrollLeft: container.scrollLeft() + clientRect.left
 				}, this.speed, function () {
 					container.off(that.stopEvents);
 				});
