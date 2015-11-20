@@ -1,23 +1,24 @@
-(function ($, location, undefined) {
+(function ($, document, location, undefined) {
 	$.nette.ext('scroll', {
 		success: function () {
-			var offset;
-			if (offset = $(location.hash).offset()) {
-				var that = this;
-				this.element.on(this.stopEvents, function () {
-					that.element.stop();
+			var position;
+			var container = $(this.container).last();
+			if (position = container.find(location.hash).position()) {
+				container.on(this.stopEvents, function () {
+					container.stop();
 				});
-				this.element.stop().animate({
-					scrollTop: offset.top,
-					scrollLeft: offset.left
+				var that = this;
+				container.stop().animate({
+					scrollTop: position.top,
+					scrollLeft: position.left
 				}, this.speed, function () {
-					that.element.off(that.stopEvents);
+					container.off(that.stopEvents);
 				});
 			}
 		}
 	}, {
 		speed: undefined,
-		element: $('html, body'),
+		container: document.body,
 		stopEvents: 'scroll.stop mousedown.stop wheel.stop DOMMouseScroll.stop mousewheel.stop keyup.stop touchmove.stop',
 	});
-})(window.jQuery, window.location, window.undefined);
+})(window.jQuery, window.document, window.location, window.undefined);
