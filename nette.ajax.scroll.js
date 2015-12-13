@@ -2,8 +2,8 @@
 	$.nette.ext('scroll', {
 		success: function () {
 			var container = $(this.container).last();
-			var element = container.find(location.hash).get(0);
-			if (element) {
+			var element = location.hash ? container.find(location.hash) : $(this.element).last();
+			if (element = element.get(0)) {
 				container.on(this.stopEvents, function () {
 					container.stop();
 				});
@@ -20,6 +20,7 @@
 	}, {
 		speed: undefined,
 		container: document.body,
+		element: document.body,
 		stopEvents: 'scroll.stop mousedown.stop wheel.stop DOMMouseScroll.stop mousewheel.stop keyup.stop touchmove.stop',
 	});
 })(window.jQuery, window.document, window.location, window.undefined);
